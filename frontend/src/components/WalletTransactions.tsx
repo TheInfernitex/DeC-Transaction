@@ -55,7 +55,7 @@ const WalletTransactions = () => {
   }, [address]);
 
   return (
-    <div className="p-4 bg-white shadow-lg rounded-lg w-full max-w-2xl">
+    <div className="p-4 bg-white shadow-lg rounded-lg w-full max-w-5xl mx-auto">
       <h2 className="text-xl font-bold mb-4">Transaction History</h2>
 
       {!address && <p className="text-gray-500">Connect your wallet to view transactions.</p>}
