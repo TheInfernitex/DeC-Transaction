@@ -64,7 +64,7 @@ npm install
 ```sh
 NEXT_PUBLIC_ETHERSCAN_API_KEY=your_etherscan_api_key
 NEXT_PUBLIC_ALCHEMY_API_KEY=your_alchemy_key
-NEXT_PUBLIC_THIRDWEB_API_KEY=your_thirdweb_key
+NEXT_PUBLIC_THIRDWEB_CLIENT_ID=your_thirdweb_key
 ```
 
 ### 4️⃣ Run the frontend
