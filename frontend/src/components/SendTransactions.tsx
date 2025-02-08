@@ -36,9 +36,14 @@ const SendTransactions = () => {
       await tx.wait(); // Wait for confirmation
 
       setTxHash(tx.hash);
-    } catch (err: any) {
-      setError(err.message || "Transaction failed.");
-    } finally {
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Transaction failed.");
+        }
+      }
+       finally {
       setLoading(false);
     }
   };

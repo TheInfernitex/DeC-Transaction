@@ -5,8 +5,18 @@ import { useAddress } from "@thirdweb-dev/react";
 import axios from "axios";
 
 const WalletTransactions = () => {
+
+    interface Transaction {
+        hash: string;
+        from: string;
+        to: string;
+        value: string;
+        timeStamp: string;
+      }
+      
+      const [transactions, setTransactions] = useState<Transaction[]>([]);
+      
   const address = useAddress();
-  const [transactions, setTransactions] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,9 +37,16 @@ const WalletTransactions = () => {
         }
 
         setTransactions(response.data.result);
-      } catch (err: any) {
-        setError(err.message || "Error fetching transactions.");
+      } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data?.message || "Error fetching transactions.");
+        } else if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Error fetching transactions.");
+        }
       }
+      
 
       setLoading(false);
     };

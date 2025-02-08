@@ -1,4 +1,3 @@
-// components/WalletBalance.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -11,11 +10,11 @@ const WalletBalance = () => {
 
   useEffect(() => {
     const fetchBalance = async () => {
-      if (address) {
+      if (address && typeof window !== "undefined" && window.ethereum) {
         try {
-          // Connect to the Ethereum network
+          // Type assertion instead of redeclaration
           const provider = new ethers.providers.Web3Provider(
-            (window as any).ethereum
+            window.ethereum as ethers.providers.ExternalProvider
           );
           // Retrieve the balance in wei
           const balanceWei = await provider.getBalance(address);
